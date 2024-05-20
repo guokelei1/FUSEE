@@ -34,6 +34,7 @@ ServerMM::ServerMM(uint64_t server_base_addr, uint64_t base_len,
 
     //init hash index
     init_hashtable();
+    printf("init hashtable done\n");
 
     int access_flag = IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ | 
         IBV_ACCESS_REMOTE_WRITE | IBV_ACCESS_REMOTE_ATOMIC;
@@ -190,8 +191,11 @@ int ServerMM::init_subtable(void * subtable_addr) {
 int ServerMM::init_hashtable() {
     uint64_t root_addr = base_addr_ + client_hash_area_off_;
     uint64_t subtable_st_addr = get_subtable_st_addr();
+    printf("debug 1 init root\n");
     init_root((void *)(root_addr));
+     printf("debug 2 init root\n");
     init_subtable((void *)(subtable_st_addr));
+     printf("debug 3 init root\n");
     return 0;
 }
 
